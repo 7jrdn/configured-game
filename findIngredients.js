@@ -30,8 +30,8 @@ class FindIngredients {
     `);
   
     const movableDivs = [
-      new MovableDiv(35, 2, -5, 2, 10000, 20, '/images/ingredients/featherGathered.gif', 'Gathered Crow Feather', this.handleItemFound.bind(this), '/images/ingredients/crow.gif', 500, 5, true),
-      new MovableDiv(10, 16, 8, 16, 1000, 15, '/images/ingredients/frogGathered.gif', 'Gathered Frog Carcass', this.handleItemFound.bind(this), '/images/ingredients/frog.gif', 40, 0.25,),
+      new MovableDiv(35, 2, -5, 2, 10000, 20, 'images/ingredients/featherGathered.gif', 'Gathered Crow Feather', this.handleItemFound.bind(this), 'images/ingredients/crow.gif', 500, 5, true),
+      new MovableDiv(10, 16, 8, 16, 1000, 15, 'images/ingredients/frogGathered.gif', 'Gathered Frog Carcass', this.handleItemFound.bind(this), 'images/ingredients/frog.gif', 40, 0.25,),
     ];
   
     // Append each movable div to the main element
