@@ -1,7 +1,7 @@
 class FindIngredients {
   constructor({ onComplete }) {
     this.foundCount = 0;
-    this.totalItems = 2; // Number of items to find
+    this.totalItems = 4; // Number of items to find
     this.onComplete = onComplete; // Save the onComplete callback
 
     // Create the element and movable divs
@@ -30,8 +30,70 @@ class FindIngredients {
     `);
   
     const movableDivs = [
-      new MovableDiv(35, 2, -5, 2, 10000, 20, './images/ingredients/featherGathered.gif', 'Gathered Crow Feather', this.handleItemFound.bind(this), './images/ingredients/crow.gif', 500, 5, true),
-      new MovableDiv(10, 16, 8, 16, 1000, 15, './images/ingredients/frogGathered.gif', 'Gathered Frog Carcass', this.handleItemFound.bind(this), './images/ingredients/frog.gif', 40, 0.25,),
+      //Crow Feather
+      new MovableDiv(
+        35, //startX
+        2,  //startY
+        -5, //endX
+        2,  //endY
+        10000, //interval between moves
+        20, //size
+        './images/ingredients/featherGathered.gif', //gathered anim
+        'Gathered Crow Feather', //gathered text
+        this.handleItemFound.bind(this), 
+        './images/ingredients/crow.gif', //item image
+        500, //delay before first move
+        5, //speed between moves
+        true //if it flips when reaching startX or endY
+      ),
+      
+      //Frog Carcass
+      new MovableDiv(
+        10, //startX
+        16, //startY
+        8,  //endX
+        16, //endY
+        1000, //interval between moves
+        15, //size
+        './images/ingredients/frogGathered.gif', //gathered anim
+        'Gathered Frog Carcass', //gathered text
+        this.handleItemFound.bind(this), 
+        './images/ingredients/frog.gif', //item image
+        40, //delay before first move
+        0.25,//speed between moves
+      ),
+
+      //Mossy Bark
+      new MovableDiv(
+        15, //startX
+        8,  //startY
+        15, //endX
+        8,  //endY
+        1000, //interval between moves
+        15, //size
+        './images/ingredients/mossyBarkGathered.gif', //gathered anim
+        'Gathered Mossy Bark', //gathered text
+        this.handleItemFound.bind(this), 
+        './images/ingredients/mossyBark.gif', //item image
+        40, //delay before first move
+        0.25, //speed between moves
+      ),
+
+      //Moonlit Mushrooms
+      new MovableDiv(
+        21, //startX
+        15,  //startY
+        21, //endX
+        15,  //endY
+        1000, //interval between moves
+        22, //size
+        './images/ingredients/moonlitMushroomsGathered.gif', //gathered anim
+        'Gathered Moonlit Mushrooms', //gathered text
+        this.handleItemFound.bind(this), 
+        './images/ingredients/moonlitMushrooms.gif', //item image
+        40, //delay before first move
+        0.25, //speed between moves
+      ),
     ];
   
     // Append each movable div to the main element

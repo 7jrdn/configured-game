@@ -177,8 +177,8 @@ window.OverworldMaps = {
       hero: {
         type: "Person",
         isPlayerControlled: true,
-        x: utils.withGrid(34),
-        y: utils.withGrid(22),
+        x: utils.withGrid(2),
+        y: utils.withGrid(30),
       },
       tuopz: {
         type: "Person",
@@ -246,6 +246,62 @@ window.OverworldMaps = {
               { type: "textMessage", text: "Now get out my way before i have you slapped to irons", faceHero:"moon!"},
               { type: "fleeAndWalkBack", who: "moon!" },
               { type: "walkBack", who: "moon!" },
+            ]
+          }
+        ]
+      },
+      'parkus': {
+        type: "Person",
+        x: utils.withGrid(46),
+        y: utils.withGrid(22),
+        src: "./images/characters/people/parkus.png",
+        behaviorLoop: [
+        { type: "walk",  direction: "right" },
+        { type: "walk",  direction: "right" },
+        { type: "stand",  direction: "right", time: "500", },
+        { type: "walk",  direction: "left" },
+        { type: "walk",  direction: "left" },
+        { type: "stand",  direction: "left", time: "500" },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "I love Dominik Santorski.", faceHero:"parkus" },
+            ]
+          }
+        ]
+      },
+      'ivyy': {
+        type: "Person",
+        x: utils.withGrid(32),
+        y: utils.withGrid(2),
+        src: "./images/characters/people/ivyy.png",
+        behaviorLoop: [
+        { type: "stand",  direction: "down", time: "2000" },
+        { type: "stand",  direction: "right", time: "2000" },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Cats will take over the world.", faceHero:"ivyy" },
+              { type: "textMessage", text: "Also i skate better than Killbok.", faceHero:"ivyy" },
+            ]
+          }
+        ]
+      },
+      'cat': {
+        type: "Person",
+        x: utils.withGrid(34),
+        y: utils.withGrid(2),
+        src: "./images/characters/people/cat.png",
+        behaviorLoop: [
+        { type: "stand",  direction: "down", time: "2000" },
+        { type: "stand",  direction: "left", time: "2000" },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "meow.", faceHero:"cat" },
             ]
           }
         ]
