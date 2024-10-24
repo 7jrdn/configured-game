@@ -1,0 +1,77 @@
+.itemContainer {
+    display: flex;
+    flex-direction: column; /* Arrange GIF and text vertically */
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Position relative to the game container */
+    opacity: 1;
+    transition: opacity 1s ease; /* Transition for fade-out */
+}
+
+.itemFound {
+    width: 75px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    image-rendering: pixelated; /* For pixel art look */
+    opacity: 1; /* Initial opacity */
+    transition: opacity 1s ease; /* Transition for fade-out */
+}
+
+.itemText {
+    font-family: DoubleHomicide;
+    color: #704c9d;
+    font-size: 9px;
+    text-align: center; /* Center the text under the image */
+    transition: opacity 1s ease; /* Transition for fade-out */
+}
+
+.background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/images/maps/findIngredientsLower.gif);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+.upper {
+    width: 240px;
+    height: 160px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/images/maps/findIngredientsUpper.gif);
+    background-size: cover;
+    image-rendering: pixelated;
+    z-index: 3;
+    pointer-events: none;
+}
+
+
+.fog {
+    width: 240px;
+    height: 160px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/images/maps/findIngredientsFOG.gif);
+    background-size: cover;
+    image-rendering: pixelated;
+    z-index: 4;
+    opacity: 15%;
+    pointer-events: none;
+}
+
+.tut {
+    font-family: DoubleHomicide;
+    color: #704c9d;
+    margin: 0;
+    padding: 3px 0px 0px 5px;
+    font-size: 9px;
+    text-align: center;
+}

@@ -1,0 +1,52 @@
+* {
+  box-sizing:border-box;
+}
+
+@font-face {
+  font-family: DoubleHomicide; /* DoubleHomicide from fontenddev.com */
+  src: url(/fonts/DoubleHomicide.ttf);
+}
+
+body {
+  background: #333;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.game-container {
+  position: relative; 
+  width: 240px;
+  height: 160px;
+  margin: 0 auto;
+  outline: 1px solid #fff;
+  overflow: hidden;
+
+  transform: scale(4) translateY(50%);
+}
+
+.game-canvas {
+  display: block;
+}
+
+.game-container canvas {
+  image-rendering: pixelated;
+}
+
+.hidden-object-canvas {
+  position: absolute;
+  width: 240px; /* Set to your game canvas width */
+  height: 160px; /* Set to your game canvas height */
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+}
+
+.hidden-object-item {
+  position: absolute;
+  cursor: pointer;
+  /* Additional styles for visibility */
+}
+
+.hidden-object-item.found {
+  text-decoration: line-through; /* Mark as found */
+  opacity: 0.5; /* Fade it out or change color */
+}
