@@ -21,6 +21,11 @@ button, input[type="submit"], input[type="reset"] {
   margin: 5px
 }
 
+.BackgroundImage{
+  background-image: url("../images/ui/textBox.png");
+  image-rendering: pixelated;
+}
+
 .TextMessage_p {
   line-height: 7px;
   margin: 0;
