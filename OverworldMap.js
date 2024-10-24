@@ -229,13 +229,11 @@ window.OverworldMaps = {
       'moon!': {
         type: "Person",
         x: utils.withGrid(28),
-        y: utils.withGrid(2),
+        y: utils.withGrid(4),
         src: "./images/characters/people/moon.png",
         behaviorLoop: [
         { type: "walk",  direction: "down" },
-        { type: "walk",  direction: "down" },
         { type: "stand",  direction: "down", time: "400", },
-        { type: "walk",  direction: "up" },
         { type: "walk",  direction: "up" },
         { type: "stand",  direction: "up", time: "400" },
         ],
