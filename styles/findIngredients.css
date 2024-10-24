@@ -30,7 +30,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(/images/maps/findIngredientsLower.gif);
+    background-image: url(./images/maps/findIngredientsLower.gif);
     background-size: cover;
     image-rendering: pixelated;
 }
@@ -43,7 +43,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(/images/maps/findIngredientsUpper.gif);
+    background-image: url(./images/maps/findIngredientsUpper.gif);
     background-size: cover;
     image-rendering: pixelated;
     z-index: 3;
@@ -59,7 +59,7 @@
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(/images/maps/findIngredientsFOG.gif);
+    background-image: url(./images/maps/findIngredientsFOG.gif);
     background-size: cover;
     image-rendering: pixelated;
     z-index: 4;
