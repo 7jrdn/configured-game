@@ -49,7 +49,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .TextMessage_button {
-  background-image: url("./images/ui/TextMessage_button.gif");
+  background-image: url("../images/ui/TextMessage_button.gif");
   width: 5px;
   height: 5px;  
   padding:0;

@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: DoubleHomicide; /* DoubleHomicide from fontenddev.com */
-  src: url(./fonts/DoubleHomicide.ttf);
+  src: url(../fonts/DoubleHomicide.ttf);
 }
 
 body {
