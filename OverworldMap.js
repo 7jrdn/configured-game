@@ -169,10 +169,10 @@ if (this.fogOffset > 0) {
 
 window.OverworldMaps = {
   Forest: {
-    lowerSrc: "images/maps/ForestLower.png",
-    upperSrc: "images/maps/ForestUpper.png",
-    fogSrc: "images/maps/fog.png",
-    fog2Src: "images/maps/fog.png",
+    lowerSrc: "../images/maps/ForestLower.png",
+    upperSrc: "../images/maps/ForestUpper.png",
+    fogSrc: "../images/maps/fog.png",
+    fog2Src: "../images/maps/fog.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -184,7 +184,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(32),
         y: utils.withGrid(16),
-        src: "images/characters/people/tuopz.png",
+        src: "../images/characters/people/tuopz.png",
         behaviorLoop: [
           { type: "stand",  direction: "down", time: 400 },
           { type: "walk",  direction: "down"},
@@ -206,7 +206,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(12),
         y: utils.withGrid(10),
-        src: "images/characters/people/iry.png",
+        src: "../images/characters/people/iry.png",
         behaviorLoop: [
         { type: "stand",  direction: "right", time: 400 },
         { type: "walk",  direction: "right" },
@@ -230,7 +230,7 @@ window.OverworldMaps = {
         type: "Person",
         x: utils.withGrid(28),
         y: utils.withGrid(2),
-        src: "images/characters/people/moon.png",
+        src: "../images/characters/people/moon.png",
         behaviorLoop: [
         { type: "walk",  direction: "down" },
         { type: "walk",  direction: "down" },
@@ -291,8 +291,8 @@ window.OverworldMaps = {
     
   },
   WitchHut: {
-    lowerSrc: "images/maps/WitchHutLower.png",
-    upperSrc: "images/maps/WitchHutUpper.png",
+    lowerSrc: "../images/maps/WitchHutLower.png",
+    upperSrc: "../images/maps/WitchHutUpper.png",
     configObjects: {
       hero: {
         type: "Person",
