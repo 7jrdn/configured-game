@@ -31,21 +31,21 @@ class OverworldMap {
 
   drawLowerImage(ctx, cameraPerson) {
     ctx.drawImage(
-      this.lowerImage, 
-      utils.withGrid(14) - cameraPerson.x, 
+      this.lowerImage,
+      utils.withGrid(14) - cameraPerson.x,
       utils.withGrid(10) - cameraPerson.y
     );
   }
 
   drawUpperImage(ctx, cameraPerson) {
     ctx.drawImage(
-      this.upperImage, 
-      utils.withGrid(14) - cameraPerson.x, 
+      this.upperImage,
+      utils.withGrid(14) - cameraPerson.x,
       utils.withGrid(10) - cameraPerson.y
     );
-  } 
+  }
 
-drawFog(ctx, cameraPerson) {
+  drawFog(ctx, cameraPerson) {
     if (!this.fogWidth) return; // Ensure the fog image has been loaded
 
     // Calculate the position where the fog should start
@@ -55,33 +55,33 @@ drawFog(ctx, cameraPerson) {
     // Set the desired fog opacity
     ctx.globalAlpha = 0.35;
 
-// First fog (original)
-ctx.drawImage(
-  this.fog,
-  this.fogOffset,
-  0,
-  this.fogWidth - this.fogOffset,
-  this.fog.height,
-  fogX,
-  fogY,
-  this.fogWidth - this.fogOffset,
-  this.fog.height
-);
+    // First fog (original)
+    ctx.drawImage(
+      this.fog,
+      this.fogOffset,
+      0,
+      this.fogWidth - this.fogOffset,
+      this.fog.height,
+      fogX,
+      fogY,
+      this.fogWidth - this.fogOffset,
+      this.fog.height
+    );
 
-// Second fog image: draw the remainder at the beginning to fill the gap
-if (this.fogOffset > 0) {
-  ctx.drawImage(
-    this.fog,
-    0,
-    0,
-    this.fogOffset,
-    this.fog.height,
-    fogX + (this.fogWidth - this.fogOffset),
-    fogY,
-    this.fogOffset,
-    this.fog.height
-  );
-}
+    // Second fog image: draw the remainder at the beginning to fill the gap
+    if (this.fogOffset > 0) {
+      ctx.drawImage(
+        this.fog,
+        0,
+        0,
+        this.fogOffset,
+        this.fog.height,
+        fogX + (this.fogWidth - this.fogOffset),
+        fogY,
+        this.fogOffset,
+        this.fog.height
+      );
+    }
 
     // Reset opacity after drawing the fog
     ctx.globalAlpha = 1.0;
@@ -92,7 +92,7 @@ if (this.fogOffset > 0) {
 
 
   isSpaceTaken(currentX, currentY, direction) {
-    const {x,y} = utils.nextPosition(currentX, currentY, direction);
+    const { x, y } = utils.nextPosition(currentX, currentY, direction);
     if (this.walls[`${x},${y}`]) {
       return true;
     }
@@ -124,21 +124,21 @@ if (this.fogOffset > 0) {
 
   async startCutscene(events) {
     this.isCutscenePlaying = true;
-  
+
     for (let i = 0; i < events.length; i++) {
       const eventHandler = new OverworldEvent({
         event: events[i],
         map: this,
       });
-  
+
       await eventHandler.init();
 
     }
-  
+
     this.isCutscenePlaying = false;
   }
-  
-  
+
+
 
   checkForActionCutscene() {
     const hero = this.gameObjects["hero"];
@@ -153,9 +153,9 @@ if (this.fogOffset > 0) {
 
   checkForFootstepCutscene() {
     const hero = this.gameObjects["hero"];
-    const match = this.cutsceneSpaces[ `${hero.x},${hero.y}` ];
+    const match = this.cutsceneSpaces[`${hero.x},${hero.y}`];
     if (!this.isCutscenePlaying && match) {
-      this.startCutscene( match[0].events )
+      this.startCutscene(match[0].events)
     }
   }
 
@@ -163,7 +163,7 @@ if (this.fogOffset > 0) {
     const hiddenObjectGame = new HiddenObjectGame(document.querySelector(".game-container"), hiddenItems);
     hiddenObjectGame.init();
   }
-  
+
 
 }
 
@@ -177,8 +177,8 @@ window.OverworldMaps = {
       hero: {
         type: "Person",
         isPlayerControlled: true,
-        x: utils.withGrid(2),
-        y: utils.withGrid(30),
+        x: utils.withGrid(38),
+        y: utils.withGrid(22),
       },
       tuopz: {
         type: "Person",
@@ -186,18 +186,18 @@ window.OverworldMaps = {
         y: utils.withGrid(16),
         src: "./images/characters/people/tuopz.png",
         behaviorLoop: [
-          { type: "stand",  direction: "down", time: 400 },
-          { type: "walk",  direction: "down"},
-          { type: "stand",  direction: "down", time: 400 },
-          { type: "stand",  direction: "up", time: 400 },
-          { type: "walk",  direction: "up"},
-          { type: "stand",  direction: "up", time: 400 },
+          { type: "stand", direction: "down", time: 400 },
+          { type: "walk", direction: "down" },
+          { type: "stand", direction: "down", time: 400 },
+          { type: "stand", direction: "up", time: 400 },
+          { type: "walk", direction: "up" },
+          { type: "stand", direction: "up", time: 400 },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I don’t know why but im still in love with old low poly games aesthetic...", faceHero:"tuopz" },
-              { type: "textMessage", text: "Have you heard of Jet Set Radio?", faceHero:"tuopz" },
+              { type: "textMessage", text: "I don’t know why but im still in love with old low poly games aesthetic...", faceHero: "tuopz" },
+              { type: "textMessage", text: "Have you heard of Jet Set Radio?", faceHero: "tuopz" },
             ]
           }
         ]
@@ -208,20 +208,20 @@ window.OverworldMaps = {
         y: utils.withGrid(10),
         src: "./images/characters/people/iry.png",
         behaviorLoop: [
-        { type: "stand",  direction: "right", time: 400 },
-        { type: "walk",  direction: "right" },
-        { type: "walk",  direction: "right" },
-        { type: "stand",  direction: "left", time: 400 },
-        { type: "walk",  direction: "left" },
-        { type: "walk",  direction: "left" },
+          { type: "stand", direction: "right", time: 400 },
+          { type: "walk", direction: "right" },
+          { type: "walk", direction: "right" },
+          { type: "stand", direction: "left", time: 400 },
+          { type: "walk", direction: "left" },
+          { type: "walk", direction: "left" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "You have 1 Blairwitch second to remove yourself from my proximity before I have you removed...", faceHero:"iryfx" },
-              { type: "fleeAndWalkBack", who: "iryfx"},
+              { type: "textMessage", text: "You have 1 Blairwitch second to remove yourself from my proximity before I have you removed...", faceHero: "iryfx" },
+              { type: "fleeAndWalkBack", who: "iryfx" },
               { type: "walkBack", who: "iryfx" },
-              { type: "textMessage", text: "which amounts to 1 minute and 30 seconds.", faceHero:"iryfx" },
+              { type: "textMessage", text: "which amounts to 1 minute and 30 seconds.", faceHero: "iryfx" },
             ]
           }
         ]
@@ -232,16 +232,16 @@ window.OverworldMaps = {
         y: utils.withGrid(4),
         src: "./images/characters/people/moon.png",
         behaviorLoop: [
-        { type: "walk",  direction: "down" },
-        { type: "stand",  direction: "down", time: "400", },
-        { type: "walk",  direction: "up" },
-        { type: "stand",  direction: "up", time: "400" },
+          { type: "walk", direction: "down" },
+          { type: "stand", direction: "down", time: "400", },
+          { type: "walk", direction: "up" },
+          { type: "stand", direction: "up", time: "400" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I dont know you, and i dont care to know you.", faceHero:"moon!" },
-              { type: "textMessage", text: "Now get out my way before i have you slapped to irons", faceHero:"moon!"},
+              { type: "textMessage", text: "I dont know you, and i dont care to know you.", faceHero: "moon!" },
+              { type: "textMessage", text: "Now get out my way before i have you slapped to irons", faceHero: "moon!" },
               { type: "fleeAndWalkBack", who: "moon!" },
               { type: "walkBack", who: "moon!" },
             ]
@@ -254,17 +254,17 @@ window.OverworldMaps = {
         y: utils.withGrid(22),
         src: "./images/characters/people/parkus.png",
         behaviorLoop: [
-        { type: "walk",  direction: "right" },
-        { type: "walk",  direction: "right" },
-        { type: "stand",  direction: "right", time: "500", },
-        { type: "walk",  direction: "left" },
-        { type: "walk",  direction: "left" },
-        { type: "stand",  direction: "left", time: "500" },
+          { type: "walk", direction: "right" },
+          { type: "walk", direction: "right" },
+          { type: "stand", direction: "right", time: "500", },
+          { type: "walk", direction: "left" },
+          { type: "walk", direction: "left" },
+          { type: "stand", direction: "left", time: "500" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "I love Dominik Santorski.", faceHero:"parkus" },
+              { type: "textMessage", text: "I love Dominik Santorski.", faceHero: "parkus" },
             ]
           }
         ]
@@ -275,14 +275,14 @@ window.OverworldMaps = {
         y: utils.withGrid(2),
         src: "./images/characters/people/ivyy.png",
         behaviorLoop: [
-        { type: "stand",  direction: "down", time: "2000" },
-        { type: "stand",  direction: "right", time: "2000" },
+          { type: "stand", direction: "down", time: "2000" },
+          { type: "stand", direction: "right", time: "2000" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Cats will take over the world.", faceHero:"ivyy" },
-              { type: "textMessage", text: "Also i skate better than Killbok.", faceHero:"ivyy" },
+              { type: "textMessage", text: "Cats will take over the world.", faceHero: "ivyy" },
+              { type: "textMessage", text: "Also i skate better than Killbok.", faceHero: "ivyy" },
             ]
           }
         ]
@@ -293,19 +293,19 @@ window.OverworldMaps = {
         y: utils.withGrid(2),
         src: "./images/characters/people/cat.png",
         behaviorLoop: [
-        { type: "stand",  direction: "down", time: "2000" },
-        { type: "stand",  direction: "left", time: "2000" },
+          { type: "stand", direction: "down", time: "2000" },
+          { type: "stand", direction: "left", time: "2000" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "meow.", faceHero:"cat" },
+              { type: "textMessage", text: "meow.", faceHero: "cat" },
             ]
           }
         ]
       },
     },
-    walls: function() {
+    walls: function () {
       let walls = {};
       [ //Bottom Forest TOP
         "0,22", "1,22", "2,22", "3,22", "4,22", "5,22", "6,22", "7,22", "8,22", "9,22", "10,22", "11,22", "12,22", "13,22", "14,22", "15,22", "16,22", "17,22", "18,22", "19,22", "20,22", "21,22", "22,22", "23,22", "24,22", "25,22", "26,22",
@@ -318,23 +318,23 @@ window.OverworldMaps = {
 
         //Hut
         "36,18", "36,16", "38,16", "40,16", "40,18",
-      
+
       ].forEach(coord => {
-        let [x,y] = coord.split(",");
-        walls[utils.asGridCoord(x,y)] = true;
+        let [x, y] = coord.split(",");
+        walls[utils.asGridCoord(x, y)] = true;
       })
       return walls;
 
     }(),
     cutsceneSpaces: {
-      [utils.asGridCoord(38,18)]: [
+      [utils.asGridCoord(38, 18)]: [
         {
           events: [
             { type: "changeMap", map: "WitchHut" },
           ]
         }
       ],
-      [utils.asGridCoord(4,28)]: [
+      [utils.asGridCoord(4, 28)]: [
         {
           events: [
             { type: "findIngredients" },
@@ -342,7 +342,7 @@ window.OverworldMaps = {
         }
       ],
     }
-    
+
   },
   WitchHut: {
     lowerSrc: "./images/maps/WitchHutLower.png",
@@ -351,9 +351,32 @@ window.OverworldMaps = {
       hero: {
         type: "Person",
         isPlayerControlled: true,
-        x: utils.withGrid(8),
-        y: utils.withGrid(6),
+        x: utils.withGrid(32),
+        y: utils.withGrid(22),
       },
+    },
+    walls: function () {
+      let walls = {};
+      [
+        //Stairs
+        "38,12", "38,10", "38,8", "40,6", "42,6", "42,10", "42,12",
+
+        //Walls
+        "42,14", "42,16", "42,18", "42,20", "42,22", "36,8", "32,6", "30,6", "28,6", "28,8", "26,8", "24,10", "24,12", "24,14", "24,16", "24,18", "24,20", "24,22", "26,24", "28,24", "30,24", "34,24", "36,24", "38,24", "40,24"
+      ].forEach(coord => {
+        let [x, y] = coord.split(",");
+        walls[utils.asGridCoord(x, y)] = true;
+      })
+      return walls;
+    }(),
+    cutsceneSpaces: {
+      [utils.asGridCoord(32, 22)]: [
+        {
+          events: [
+            { type: "changeMap", map: "Forest" },
+          ]
+        }
+      ],
     }
-  },
+  }
 }
