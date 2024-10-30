@@ -10,14 +10,14 @@ button, input[type="submit"], input[type="reset"] {
 
 .TextMessage {
   font-family: DoubleHomicide;
-  text-shadow: 0.5px 0.5px #2b0d0d;
+  color: white;
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  height: 35px;
+  height: 50px;
   width: 230px;
-  padding: 2px 5px 5px;
+  padding: 3px 8px 5px;
   margin: 5px
 }
 
@@ -27,7 +27,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .TextMessage_p {
-  line-height: 7px;
+  line-height: 9px;
   margin: 0;
   font-size: 9px;
 }
@@ -40,7 +40,7 @@ button, input[type="submit"], input[type="reset"] {
 }
 
 .TextMessage_who {
-  padding-bottom: 2px;
+  padding-bottom: 8px;
   margin: 0;
   font-size: 10px;
   color: white;
