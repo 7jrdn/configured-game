@@ -358,6 +358,7 @@ window.OverworldMaps = {
       },
       artwork1: {
         type: "Person",
+        src: "./images/empty.png",
         x: utils.withGrid(22),
         y: utils.withGrid(12),
         talking: [

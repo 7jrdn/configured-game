@@ -83,7 +83,7 @@ class Overworld {
   }
 
   init() {
-    this.startMap(window.OverworldMaps.WitchHut);
+    this.startMap(window.OverworldMaps.Forest);
 
 
     this.bindActionInput();
