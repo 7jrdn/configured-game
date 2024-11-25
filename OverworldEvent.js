@@ -177,13 +177,30 @@ class OverworldEvent {
     message.init(document.querySelector(".game-container"));
   }
 
-  changeMap(resolve) {
+  storylineMessage(resolve) {
+    const message = new StorylineMessage({
+      text: this.event.text,
+      onComplete: () => {
+        // When the message is complete, resolve the promise
+        resolve();
+      }
+    });
+  
+    message.init(document.querySelector(".game-container"));
+  }
+  
+
+changeMap(resolve) {
     const sceneTransition = new SceneTransition();
     sceneTransition.init(document.querySelector(".game-container"), () => {
-      this.map.overworld.startMap(window.OverworldMaps[this.event.map]);
+      this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
+        x: this.event.x,
+        y: this.event.y,
+        direction: this.event.direction,
+      });
       resolve();
       sceneTransition.fadeOut();
-    });
+    })
   }
 
   findIngredients(resolve) {
@@ -208,6 +225,24 @@ class OverworldEvent {
     findIngredients.init(document.querySelector(".game-container"));
     console.log("FindIngredients game started.");
   }
+
+  async musicBox(resolve) {
+    const musicBox = new MusicBox({
+        onComplete: () => resolve()  // Resolves the event after the music box closes
+    });
+
+    musicBox.init(document.querySelector(".game-container"));
+  }
+
+  artwork(resolve) {
+    const artwork = new Artwork({
+        imageSrc: this.event.imageSrc,
+        onComplete: () => resolve() // Ensure resolve is called when the artwork completes
+    });
+
+    artwork.init(document.querySelector(".game-container")); // Initialize and append the artwork
+}
+
 
   init() {
     return new Promise(resolve => {

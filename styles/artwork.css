@@ -1,0 +1,15 @@
+.artwork-container {
+    display: flex;
+    flex-direction: column; /* Arrange GIF and text vertically */
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Position relative to the game container */
+    opacity: 1;
+    transition: opacity 1s ease; /* Transition for fade-out */
+  }
+  
+  .artwork-image {
+    background-size: cover;
+    display: block;
+  }
+  

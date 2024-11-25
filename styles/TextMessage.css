@@ -26,6 +26,11 @@ button, input[type="submit"], input[type="reset"] {
   image-rendering: pixelated;
 }
 
+.witchTextBox{
+  background-image: url("../images/ui/witch_textBox.gif");
+  image-rendering: pixelated;
+}
+
 .TextMessage_p {
   line-height: 9px;
   margin: 0;

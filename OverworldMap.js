@@ -13,20 +13,6 @@ class OverworldMap {
     this.upperImage = new Image();
     this.upperImage.src = config.upperSrc;
 
-    this.fog = new Image();
-    this.fog.src = config.fogSrc;
-
-    // Wait for the fog image to load
-    this.fog.onload = () => {
-      this.fogWidth = this.fog.width; // Store fog width once the image is loaded
-    };
-
-    this.fogOffset = 0; // Start offset for scrolling
-    this.isCutscenePlaying = false;
-
-    this.frameRate = 60; // Example: 60 FPS
-    this.scrollSpeed = 15 / this.frameRate; // 1/16 grid per second
-
   }
 
   drawLowerImage(ctx, cameraPerson) {
@@ -44,52 +30,6 @@ class OverworldMap {
       utils.withGrid(10) - cameraPerson.y
     );
   }
-
-  drawFog(ctx, cameraPerson) {
-    if (!this.fogWidth) return; // Ensure the fog image has been loaded
-
-    // Calculate the position where the fog should start
-    const fogX = utils.withGrid(-20) - cameraPerson.x;
-    const fogY = utils.withGrid(16) - cameraPerson.y;
-
-    // Set the desired fog opacity
-    ctx.globalAlpha = 0.35;
-
-    // First fog (original)
-    ctx.drawImage(
-      this.fog,
-      this.fogOffset,
-      0,
-      this.fogWidth - this.fogOffset,
-      this.fog.height,
-      fogX,
-      fogY,
-      this.fogWidth - this.fogOffset,
-      this.fog.height
-    );
-
-    // Second fog image: draw the remainder at the beginning to fill the gap
-    if (this.fogOffset > 0) {
-      ctx.drawImage(
-        this.fog,
-        0,
-        0,
-        this.fogOffset,
-        this.fog.height,
-        fogX + (this.fogWidth - this.fogOffset),
-        fogY,
-        this.fogOffset,
-        this.fog.height
-      );
-    }
-
-    // Reset opacity after drawing the fog
-    ctx.globalAlpha = 1.0;
-
-    // Update the fog offset, ensuring it loops around smoothly
-    this.fogOffset = (this.fogOffset + this.scrollSpeed) % this.fogWidth;
-  }
-
 
   isSpaceTaken(currentX, currentY, direction) {
     const { x, y } = utils.nextPosition(currentX, currentY, direction);
@@ -171,8 +111,6 @@ window.OverworldMaps = {
   Forest: {
     lowerSrc: "./images/maps/ForestLower.png",
     upperSrc: "./images/maps/ForestUpper.png",
-    fogSrc: "./images/maps/fog.png",
-    fog2Src: "./images/maps/fog.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -269,37 +207,48 @@ window.OverworldMaps = {
           }
         ]
       },
-      'ivyy': {
+      'akamey': {
         type: "Person",
         x: utils.withGrid(32),
         y: utils.withGrid(2),
-        src: "./images/characters/people/ivyy.png",
+        src: "./images/characters/people/akamey.png",
         behaviorLoop: [
+          { type: "stand", direction: "down", time: "2000" },
+          { type: "stand", direction: "left", time: "2000" },
           { type: "stand", direction: "down", time: "2000" },
           { type: "stand", direction: "right", time: "2000" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "Cats will take over the world.", faceHero: "ivyy" },
-              { type: "textMessage", text: "Also i skate better than Killbok.", faceHero: "ivyy" },
+              { type: "textMessage", text: "Excuse me,", faceHero: "akamey" },
+              { type: "textMessage", text: "friend,", faceHero: "akamey" },
+              { type: "textMessage", text: "any chance you possess knowledge of the 'poet’s herb’?", faceHero: "akamey" },
+              { type: "textMessage", text: "My craft requires a certain...", faceHero: "akamey" },
+              { type: "textMessage", text: "creative spark.", faceHero: "akamey" },
             ]
           }
         ]
       },
-      'cat': {
+      '642': {
         type: "Person",
-        x: utils.withGrid(34),
-        y: utils.withGrid(2),
-        src: "./images/characters/people/cat.png",
+        x: utils.withGrid(46),
+        y: utils.withGrid(6),
+        src: "./images/characters/people/642.png",
         behaviorLoop: [
-          { type: "stand", direction: "down", time: "2000" },
-          { type: "stand", direction: "left", time: "2000" },
+          { type: "walk", direction: "down" },
+          { type: "stand", direction: "down", time: "1000" },
+          { type: "walk", direction: "right" },
+          { type: "stand", direction: "right", time: "1000" },
+          { type: "walk", direction: "up" },
+          { type: "stand", direction: "up", time: "1000" },
+          { type: "walk", direction: "left" },
+          { type: "stand", direction: "left", time: "1000" },
         ],
         talking: [
           {
             events: [
-              { type: "textMessage", text: "meow.", faceHero: "cat" },
+              { type: "textMessage", text: "I am relevant to goliaths, the mountain's root are as fine as pure wine.", faceHero: "642" },
             ]
           }
         ]
@@ -327,10 +276,38 @@ window.OverworldMaps = {
 
     }(),
     cutsceneSpaces: {
+      [utils.asGridCoord(38, 20)]: [
+        {
+          events: [
+            { type: "storylineMessage", text: "Hold up..." },
+            { type: "storylineMessage", text: "Who are you?" },
+            { type: "storylineMessage", text: "You're not allowed in here." },
+            { type: "storylineMessage", text: "WHAT?!" },
+            { type: "storylineMessage", text: "You're back??" },
+            { type: "storylineMessage", text: "Forgive me Blair..." },
+            { type: "storylineMessage", text: "You look so different." },
+            { type: "storylineMessage", text: "Come in please. Many things have changed since you've been gone." },
+            { type: "walk", who: "hero", direction: "up", },
+            {
+              type: "changeMap",
+              map: "WitchHut",
+              x: utils.withGrid(32),
+              y: utils.withGrid(22),
+              direction: "up"
+            },
+          ]
+        }
+      ],
       [utils.asGridCoord(38, 18)]: [
         {
           events: [
-            { type: "changeMap", map: "WitchHut" },
+            {
+              type: "changeMap",
+              map: "WitchHut",
+              x: utils.withGrid(32),
+              y: utils.withGrid(22),
+              direction: "up"
+            },
           ]
         }
       ],
@@ -345,8 +322,8 @@ window.OverworldMaps = {
 
   },
   WitchHut: {
-    lowerSrc: "./images/maps/WitchHutLower.png",
-    upperSrc: "./images/maps/WitchHutUpper.png",
+    lowerSrc: "./images/maps/witchHutLower.png",
+    upperSrc: "./images/maps/witchHutUpper.png",
     configObjects: {
       hero: {
         type: "Person",
@@ -354,15 +331,58 @@ window.OverworldMaps = {
         x: utils.withGrid(32),
         y: utils.withGrid(22),
       },
+      fire: {
+        type: "Person",
+        x: utils.withGrid(32),
+        y: utils.withGrid(6),
+        src: "./images/characters/fire.png",
+        behaviorLoop: [
+          { type: "stand", direction: "down", time: "100" },
+          { type: "stand", direction: "right", time: "100" },
+          { type: "stand", direction: "up", time: "100" },
+          { type: "stand", direction: "left", time: "100" },
+        ],
+      },
+      musicBox: {
+        type: "Person",
+        src: "./images/empty.png",
+        x: utils.withGrid(36),
+        y: utils.withGrid(10),
+        talking: [
+          {
+            events: [
+              { type: "musicBox" },
+            ]
+          }
+        ]
+      },
+      artwork1: {
+        type: "Person",
+        x: utils.withGrid(22),
+        y: utils.withGrid(12),
+        talking: [
+          {
+            events: [
+              {
+                type: "artwork",
+                imageSrc: "./images/artwork/moonART.jpg", // Ensure path correctness
+              }
+            ]
+          }
+        ]
+      },
+
     },
     walls: function () {
       let walls = {};
       [
-        //Stairs
-        "38,12", "38,10", "38,8", "40,6", "42,6", "42,10", "42,12",
-
         //Walls
-        "42,14", "42,16", "42,18", "42,20", "42,22", "36,8", "32,6", "30,6", "28,6", "28,8", "26,8", "24,10", "24,12", "24,14", "24,16", "24,18", "24,20", "24,22", "26,24", "28,24", "30,24", "34,24", "36,24", "38,24", "40,24"
+        "4,4", "6,4", "8,4", "10,4", "12,12", "14,12", "16,12", "18,12", "12,10", "12,8", "12,6",
+        "20,12", "22,12", "24,12", "24,10", "26,8", "28,8", "30,6", "32,6", "34,6", "36,8", "36,10", "38,12", "38,10",
+        "38,8", "38,6", "40,4", "42,4", "44,4", "46,4", "42,10", "44,10", "46,10", "42,10", "42,12", "42,14", "42,16", "42,18",
+        "42,20", "42,22", "26,24", "28,24", "30,24", "32,24", "34,24", "36,24", "38,24", "40,24", "24,22", "24,20", "12,18",
+        "14,18", "16,18", "18,18", "20,18", "22,18", "24,18", "12,20", "4,22", "6,22", "8,22", "10,22", "2,6", "2,8", "2,10",
+        "2,12", "2,14", "2,16", "2,18", "2,20"
       ].forEach(coord => {
         let [x, y] = coord.split(",");
         walls[utils.asGridCoord(x, y)] = true;
@@ -377,6 +397,84 @@ window.OverworldMaps = {
           ]
         }
       ],
+      [utils.asGridCoord(46, 6)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "Bedroom",
+              x: utils.withGrid(0),
+              y: utils.withGrid(0),
+              direction: "right"
+            },
+          ]
+        }
+      ],
+      [utils.asGridCoord(46, 8)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "Bedroom",
+              x: utils.withGrid(0),
+              y: utils.withGrid(2),
+              direction: "right"
+            },
+          ]
+        }
+      ],
     }
-  }
+  },
+
+  Bedroom: {
+    lowerSrc: "./images/maps/bedroomLower.png",
+    upperSrc: "./images/maps/bedroomUpper.png",
+    configObjects: {
+      hero: {
+        type: "Person",
+        isPlayerControlled: true,
+        x: utils.withGrid(0),
+        y: utils.withGrid(0),
+      },
+    },
+    walls: function () {
+      let walls = {};
+      [
+        //Walls
+
+      ].forEach(coord => {
+        let [x, y] = coord.split(",");
+        walls[utils.asGridCoord(x, y)] = true;
+      })
+      return walls;
+    }(),
+    cutsceneSpaces: {
+      [utils.asGridCoord(0, 0)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "WitchHut",
+              x: utils.withGrid(46),
+              y: utils.withGrid(6),
+              direction: "left"
+            }
+          ]
+        }
+      ],
+      [utils.asGridCoord(0, 2)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "WitchHut",
+              x: utils.withGrid(46),
+              y: utils.withGrid(8),
+              direction: "left"
+            },
+          ]
+        }
+      ],
+    }
+  },
 }

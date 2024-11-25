@@ -44,8 +44,6 @@ class Overworld {
         // Draw Upper layer
         this.map.drawUpperImage(this.ctx, cameraPerson);
   
-        // Draw Fog
-        this.map.drawFog(this.ctx, cameraPerson);
       }
   
       requestAnimationFrame(step);
@@ -71,21 +69,21 @@ class Overworld {
     })
   }
 
-  startMap(mapConfig) {
+  startMap(mapConfig, heroInitialState=null) {
     this.map = new OverworldMap(mapConfig);
     this.map.overworld = this;
     this.map.mountObjects();
-  }
 
-  if(heroInitialState) {
-    const { hero } = this.map.gameObjects;
-    hero.x = heroInitialState.x;
-    hero.y = heroInitialState.y;
-    hero.direction = heroInitialState.direction;
+    if(heroInitialState) {
+      const { hero } = this.map.gameObjects;
+      hero.x = heroInitialState.x;
+      hero.y = heroInitialState.y;
+      hero.direction = heroInitialState.direction;
+    }
   }
 
   init() {
-    this.startMap(window.OverworldMaps.Forest);
+    this.startMap(window.OverworldMaps.WitchHut);
 
 
     this.bindActionInput();

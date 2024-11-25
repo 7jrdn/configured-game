@@ -1,0 +1,87 @@
+.musicBox {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(../images/maps/musicBox.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+.music-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    position: relative;
+}
+
+.music-box-image {
+    width: 100px;
+    height: 100px;
+    padding: 10px 5px;
+}
+
+.play-button {
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-image: url(../images/ui/play.png);
+    background-size: cover;
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+.pause-button {
+    width: 7px;
+    height: 7px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-image: url(../images/ui/pause.png);
+    background-size: cover;
+    image-rendering: pixelated;
+    cursor: pointer;
+}
+
+.prev-button, .next-button {
+    width: 7px;
+    height: 7px;
+    cursor: pointer;
+}
+
+.prev-button {
+    background-image: url(../images/ui/prev.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+.next-button {
+    background-image: url(../images/ui/next.png);
+    background-size: cover;
+    image-rendering: pixelated;
+}
+
+.exitButton {
+    font-family: DoubleHomicide;
+    position: absolute; /* Position it somewhere visible */
+    top: 7px; /* Adjust position as needed */
+    right: 7px; /* Adjust position as needed */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    font-size: 16px; /* Adjust font size */
+    cursor: pointer; /* Change the cursor to indicate it's clickable */
+}
+
+.exitButton:hover {
+    color: darkred; /* Change color on hover for better user interaction */
+}
