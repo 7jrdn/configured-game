@@ -51,3 +51,13 @@ body {
   text-decoration: line-through; /* Mark as found */
   opacity: 0.5; /* Fade it out or change color */
 }
+
+.how-to-play {
+  font-family: DoubleHomicide;
+  position: absolute;
+  left:0; right:0;
+  bottom: 0;
+  text-align:center;
+  font-size: 24px;
+  color: #704c9d;
+}

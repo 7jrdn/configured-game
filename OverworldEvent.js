@@ -185,15 +185,15 @@ class OverworldEvent {
         resolve();
       }
     });
-  
+
     message.init(document.querySelector(".game-container"));
   }
-  
 
-changeMap(resolve) {
+
+  changeMap(resolve) {
     const sceneTransition = new SceneTransition();
     sceneTransition.init(document.querySelector(".game-container"), () => {
-      this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
+      this.map.overworld.startMap(window.OverworldMaps[this.event.map], {
         x: this.event.x,
         y: this.event.y,
         direction: this.event.direction,
@@ -228,7 +228,7 @@ changeMap(resolve) {
 
   async musicBox(resolve) {
     const musicBox = new MusicBox({
-        onComplete: () => resolve()  // Resolves the event after the music box closes
+      onComplete: () => resolve()  // Resolves the event after the music box closes
     });
 
     musicBox.init(document.querySelector(".game-container"));
@@ -236,13 +236,17 @@ changeMap(resolve) {
 
   artwork(resolve) {
     const artwork = new Artwork({
-        imageSrc: this.event.imageSrc,
-        onComplete: () => resolve() // Ensure resolve is called when the artwork completes
+      imageSrc: this.event.imageSrc,
+      onComplete: () => resolve() // Ensure resolve is called when the artwork completes
     });
 
     artwork.init(document.querySelector(".game-container")); // Initialize and append the artwork
-}
+  }
 
+  addStoryFlag(resolve) {
+    window.playerState.storyFlags[this.event.flag] = true;
+    resolve();
+  }
 
   init() {
     return new Promise(resolve => {

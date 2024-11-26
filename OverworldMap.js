@@ -79,7 +79,6 @@ class OverworldMap {
   }
 
 
-
   checkForActionCutscene() {
     const hero = this.gameObjects["hero"];
     const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
@@ -87,7 +86,13 @@ class OverworldMap {
       return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`
     });
     if (!this.isCutscenePlaying && match && match.talking.length) {
-      this.startCutscene(match.talking[0].events)
+
+      const relevantScenario = match.talking.find(scenario => {
+        return (scenario.required || []).every(sf => {
+          return playerState.storyFlags[sf]
+        })
+      })
+      relevantScenario && this.startCutscene(relevantScenario.events)
     }
   }
 
@@ -253,6 +258,32 @@ window.OverworldMaps = {
           }
         ]
       },
+      'dio': {
+        type: "Person",
+        x: utils.withGrid(18),
+        y: utils.withGrid(6),
+        src: "./images/characters/people/dio.png",
+        behaviorLoop: [
+          { type: "walk", direction: "right" },
+          { type: "walk", direction: "right" },
+          { type: "stand", direction: "right", time: "1000" },
+          { type: "walk", direction: "up" },
+          { type: "stand", direction: "up", time: "1000" },
+          { type: "walk", direction: "left" },
+          { type: "walk", direction: "left" },
+          { type: "stand", direction: "left", time: "1000" },
+          { type: "walk", direction: "down" },
+          { type: "stand", direction: "down", time: "1000" },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Green sneakers in a perpetually rainy city are like a little rebellion against the gray skies...", faceHero: "dio" },
+              { type: "textMessage", text: "every step feels like you're planting a piece of spring in a concrete jungle.", faceHero: "dio" },
+            ]
+          }
+        ]
+      },
     },
     walls: function () {
       let walls = {};
@@ -276,9 +307,24 @@ window.OverworldMaps = {
 
     }(),
     cutsceneSpaces: {
-      [utils.asGridCoord(38, 20)]: [
+      [utils.asGridCoord(38,18)]: [
         {
           events: [
+            {
+              type: "changeMap",
+              map: "WitchHut",
+              x: utils.withGrid(32),
+              y: utils.withGrid(22),
+              direction: "up"
+            },
+          ],
+        }
+      ],
+      [utils.asGridCoord(38, 18)]: [
+        {
+          disqualify: ["DID_TUTORIAL"],
+          events: [
+            { type: "addStoryFlag", flag: "DID_TUTORIAL"},
             { type: "storylineMessage", text: "Hold up..." },
             { type: "storylineMessage", text: "Who are you?" },
             { type: "storylineMessage", text: "You're not allowed in here." },
@@ -287,20 +333,6 @@ window.OverworldMaps = {
             { type: "storylineMessage", text: "Forgive me Blair..." },
             { type: "storylineMessage", text: "You look so different." },
             { type: "storylineMessage", text: "Come in please. Many things have changed since you've been gone." },
-            { type: "walk", who: "hero", direction: "up", },
-            {
-              type: "changeMap",
-              map: "WitchHut",
-              x: utils.withGrid(32),
-              y: utils.withGrid(22),
-              direction: "up"
-            },
-          ]
-        }
-      ],
-      [utils.asGridCoord(38, 18)]: [
-        {
-          events: [
             {
               type: "changeMap",
               map: "WitchHut",
@@ -394,7 +426,13 @@ window.OverworldMaps = {
       [utils.asGridCoord(32, 22)]: [
         {
           events: [
-            { type: "changeMap", map: "Forest" },
+            {
+              type: "changeMap",
+              map: "Forest",
+              x: utils.withGrid(38),
+              y: utils.withGrid(20),
+              direction: "down"
+            },
           ]
         }
       ],
