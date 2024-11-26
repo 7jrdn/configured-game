@@ -354,8 +354,8 @@ window.OverworldMaps = {
 
   },
   WitchHut: {
-    lowerSrc: "./images/maps/witchHutLower.png",
-    upperSrc: "./images/maps/witchHutUpper.png",
+    lowerSrc: "./images/maps/WitchHutLower.png",
+    upperSrc: "./images/maps/WitchHutUpper.png",
     configObjects: {
       hero: {
         type: "Person",
